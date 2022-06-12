@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="./style.css">
         <script src="script.js" defer></script>
     </head>
-    <body>
+    <body onmousedown="return false" onselectstart="return false">
         <div class="calculator">
             <div class="screen">
                 <div class="prev-display"></div>
@@ -43,5 +43,7 @@
                 <div data-operator>÷</div>
             </div>
         </div>
+
+        <audio id="click-audio" src="./click-audio.mp3" preload="auto"></audio>
     </body>
 </html>

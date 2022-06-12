@@ -5,11 +5,29 @@ const operatorBtns = document.querySelectorAll('[data-operator]');
 const equalBtn = document.querySelector('[data-equals]');
 const clearBtn = document.querySelector('[data-clear]');
 const deleteBtn = document.querySelector('[data-delete]');
+const allBtns = document.querySelectorAll('.row > div');
+const clickAudio = document.getElementById('click-audio');
 
 let currentOp = '';
 let previousOp = '';
 let operatorMode = undefined;
 const ERROR_MSG = "can't divide by 0";
+
+// ALL BUTTONS
+
+allBtns.forEach((btn) => {
+    btn.addEventListener('click', onClick)
+})
+
+function onClick() {
+    clickAudio.currentTime = 0;
+    clickAudio.play();
+
+    this.classList.add('selected');
+    setTimeout(() => {
+        this.classList.remove('selected');
+    }, 500);
+}
 
 // NUMBER BUTTONS
 
@@ -35,7 +53,7 @@ operatorBtns.forEach((operator) => {
 })
 
 function operate() {
-    if (currentOp == ERROR_MSG) return;
+    if (currentOp == ERROR_MSG || (!currentOp && !previousOp)) return;
 
     if (currentOp) {
         evalOperands();
@@ -55,7 +73,7 @@ equalBtn.addEventListener('click', evalOperands);
 function evalOperands() {
     if(previousOp && currentOp) {
         let answer = 0;
-        
+
         switch (operatorMode) {
             case '×':
                 answer = previousOp * currentOp;
