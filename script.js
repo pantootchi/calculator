@@ -53,6 +53,7 @@ operatorBtns.forEach((operator) => {
 })
 
 function operate() {
+    if (currentOp == '.') return;
     if (currentOp == ERROR_MSG || (!currentOp && !previousOp)) return;
 
     if (currentOp) {
@@ -71,9 +72,10 @@ function operate() {
 equalBtn.addEventListener('click', evalOperands);
 
 function evalOperands() {
+    if (currentOp == '.') return;
+    
     if(previousOp && currentOp) {
         let answer = 0;
-
         switch (operatorMode) {
             case '×':
                 answer = previousOp * currentOp;
