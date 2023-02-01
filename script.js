@@ -26,7 +26,7 @@ function onClick() {
     this.classList.add('selected');
     setTimeout(() => {
         this.classList.remove('selected');
-    }, 500);
+    }, 200);
 }
 
 // NUMBER BUTTONS
